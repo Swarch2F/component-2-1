@@ -1,6 +1,6 @@
-# Component-2: Spring Boot + GraphQL Microservice
+# Component-2-1: Spring Boot + GraphQL Microservice
 
-Este microservicio implementa la gestión de **Profesores**, **Asignaturas** y **Calificaciones** mediante un API GraphQL y MongoDB.
+Este microservicio implementa la gestión de **Profesores**, **Asignaturas** mediante un API GraphQL y MongoDB.
 
 ## 📋 Funcionalidades
 
@@ -133,63 +133,6 @@ Este microservicio implementa la gestión de **Profesores**, **Asignaturas** y *
   }
   ```
 
-### Calificación
-
-* **Query**:
-
-  * `calificaciones(estudianteId: ID, asignaturaId: ID, cursoId: ID, periodo: String): [Calificacion!]!`
-
-  **Ejemplo**:
-
-  ```graphql
-  query {
-    calificaciones(periodo: "2025-1") {
-      id
-      estudianteId
-      asignaturaId
-      cursoId
-      periodo
-      nota
-      observaciones
-    }
-  }
-  ```
-
-* **Mutation**:
-
-  * `registrarCalificacion(estudianteId: ID!, asignaturaId: ID!, cursoId: ID!, periodo: String!, nota: Float!, observaciones: String): Calificacion!`
-  * `actualizarCalificacion(id: ID!, nota: Float, observaciones: String): Calificacion!`
-  * `eliminarCalificacion(id: ID!): Boolean!`
-
-  **Ejemplos**:
-
-  ```graphql
-  mutation {
-    registrarCalificacion(
-      estudianteId: "est-101",
-      asignaturaId: "<ID_ASIG>",
-      cursoId: "11-A",
-      periodo: "2025-1",
-      nota: 4.2,
-      observaciones: "Buen desempeño"
-    ) {
-      id nota observaciones
-    }
-  }
-
-  mutation {
-    actualizarCalificacion(
-      id: "<ID_CALIF>",
-      nota: 4.8
-    ) {
-      id nota observaciones
-    }
-  }
-
-  mutation {
-    eliminarCalificacion(id: "<ID_CALIF>")
-  }
-  ```
 
 ## 🚀 Ejecución con Docker Compose con Docker Compose
 
@@ -197,7 +140,7 @@ Este microservicio implementa la gestión de **Profesores**, **Asignaturas** y *
 
    ```bash
    git clone <URL_DEL_REPO>
-   cd component-2
+   cd component-2-1
    ```
 
 2. **Asegúrate** de no tener MongoDB local escuchando en el puerto 27017, o ajusta el puerto en `docker-compose.yml`.
@@ -208,7 +151,7 @@ Este microservicio implementa la gestión de **Profesores**, **Asignaturas** y *
    docker compose up --build
    ```
 
-   * El servicio **mongoDB** correrá en el contenedor `mongoDB` y se mapea al puerto 27018 (ajustable).
+   * El servicio **mongoDB** correrá en el contenedor `mongoDB1` y se mapea al puerto 27018 (ajustable).
    * El servicio **api** correrá en `http://localhost:8080`.
 
 4. **Probar GraphQL**:
